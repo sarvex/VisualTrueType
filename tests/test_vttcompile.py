@@ -35,15 +35,13 @@ def compiled_font_mem():
     tt = TTFont(IN_SELAWIK)
     compiler = vtt.Compiler(tt)
     compiler.compile_all()
-    tt1 = compiler.get_ttfont(vtt.StripLevel.STRIP_NOTHING)
-    return tt1
+    return compiler.get_ttfont(vtt.StripLevel.STRIP_NOTHING)
 
 @pytest.fixture
 def compiled_font_file_mem():
     compiler = vtt.Compiler(IN_SELAWIK)
     compiler.compile_all()
-    tt1 = compiler.get_ttfont(vtt.StripLevel.STRIP_NOTHING)
-    return tt1
+    return compiler.get_ttfont(vtt.StripLevel.STRIP_NOTHING)
 
 @pytest.fixture
 def compiled_font_mem_file():
@@ -67,8 +65,7 @@ def compiled_stripped_font_mem():
     tt = TTFont(IN_SELAWIK)
     compiler = vtt.Compiler(tt)
     compiler.compile_all()
-    tt1 = compiler.get_ttfont(vtt.StripLevel.STRIP_SOURCE)
-    return tt1
+    return compiler.get_ttfont(vtt.StripLevel.STRIP_SOURCE)
 
 @pytest.fixture
 def compiled_source_from_bin_font_file():
@@ -88,8 +85,7 @@ def compiled_source_from_bin_font_mem():
     compiler = vtt.Compiler(tt)
     compiler.import_source_from_binary()
     compiler.compile_all()
-    tt1 = compiler.get_ttfont(vtt.StripLevel.STRIP_NOTHING)
-    return tt1
+    return compiler.get_ttfont(vtt.StripLevel.STRIP_NOTHING)
 
 
 def compare_fonts(ttorig, ttcomp) -> None:

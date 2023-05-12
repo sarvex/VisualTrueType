@@ -11,7 +11,7 @@ def main(args=None):
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--version', action='version', version='%(prog)s {version}'.format(version=vtt_version))
-    
+
     parser.add_argument("input", help="Input file")
     parser.add_argument("output", help="Output file")
 
@@ -26,7 +26,7 @@ def main(args=None):
     sgroup.add_argument("-s", "--source", action="store_true", help="Strip source")
     sgroup.add_argument("-b", "--hints", action="store_true", help="Strip source and hints")
     sgroup.add_argument("-c", "--cache", action="store_true", help="Strip source and hints and cache tables")
-    
+
     args = parser.parse_args(args)
 
     print(args.input)
@@ -36,15 +36,8 @@ def main(args=None):
 
     compiler = vtt.Compiler(inpath)
 
-    legacy = False
-    variationCompositeGuard = True 
-
-    if args.legacy:
-        legacy = True
-
-    if args.disablevariationcompositeguard:
-        variationCompositeGuard = False
-
+    legacy = bool(args.legacy)
+    variationCompositeGuard = not args.disablevariationcompositeguard
     if args.importsourcefrombinary:
         compiler.import_source_from_binary()
 
@@ -57,7 +50,7 @@ def main(args=None):
 	#else if (bStripSource) strip = stripSource;
 
     level = vtt.StripLevel.STRIP_NOTHING
-    
+
     if args.cache:
         level = vtt.StripLevel.STRIP_BINARY
     elif args.hints:
